@@ -81,7 +81,7 @@
             border: 3px solid #30363d; 
             animation: float 3s ease-in-out infinite; 
             object-fit: cover; /* يملأ الدائرة بدون تشويه */
-            object-position: center 20%; /* تم تقليل الرقم لإنزال الصورة قليلاً وضبط الوزنية */
+            object-position: center 20%; /* تم التعديل إلى 20% حسب طلبك */
             background-color: #161b22;
         }
         
@@ -91,12 +91,12 @@
         .about-text { flex-grow: 1; }
         .about-text p { color: #a0aec0; font-size: 17px; margin-bottom: 30px; line-height: 1.8; }
 
-        /* حاوية المربعات الصغيرة (الإحصائيات) */
-        .stats-grid { display: flex; gap: 20px; flex-wrap: wrap; justify-content: right; width: 100%; }
-        .stat-card { background: rgba(22, 27, 34, 0.85); border: 1px solid #30363d; padding: 20px; border-radius: 12px; width: calc(33.33% - 14px); text-align: center; transition: all 0.3s ease; }
+        /* حاوية المربعات الصغيرة (الإحصائيات) تم التعديل لتكون جنباً إلى جنب دائماً */
+        .stats-grid { display: flex; gap: 15px; justify-content: center; width: 100%; flex-wrap: nowrap; }
+        .stat-card { background: rgba(22, 27, 34, 0.85); border: 1px solid #30363d; padding: 20px 10px; border-radius: 12px; flex: 1; text-align: center; transition: all 0.3s ease; }
         .stat-card:hover { border-color: #00b4d8; transform: translateY(-5px); }
-        .stat-number { font-size: 28px; font-weight: 800; color: #00b4d8; margin-bottom: 5px; }
-        .stat-label { font-size: 14px; color: #a0aec0; font-weight: 500; }
+        .stat-number { font-size: 26px; font-weight: 800; color: #00b4d8; margin-bottom: 5px; }
+        .stat-label { font-size: 13px; color: #a0aec0; font-weight: 500; }
 
         /* قسم الأعمال - Work */
         .projects-grid { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; max-width: 1100px; padding: 0 10px; width: 100%; }
@@ -121,9 +121,9 @@
         .contact-phone { display: flex; align-items: center; justify-content: right; gap: 10px; margin-bottom: 5px; color: #ffffff; font-weight: 700; font-size: 24px; direction: ltr; letter-spacing: 1px;}
         .contact-detail { color: #a0aec0; font-size: 14px; display: flex; gap: 8px; align-items: center; margin-bottom: 15px; }
 
-        /* للتوافق مع الهواتف */
-        @media (max-width: 900px) { .project-card { width: 100%; } .about-content { flex-direction: column-reverse; text-align: center; gap: 20px; } .about-photo-container { width: 220px; height: 220px; margin-bottom: 30px; } .stats-grid { justify-content: center; } .stat-card { width: calc(50% - 10px); } }
-        @media (max-width: 600px) { h1 { font-size: 34px; } h2.typing-container { font-size: 20px; } .app-gallery img { height: 220px; } .contact-phone { font-size: 20px; } .about-photo-container { width: 200px; height: 200px; } .stat-card { width: 100%; } }
+        /* للتوافق مع الهواتف (تم التعديل للحفاظ على المربعات جنباً إلى جنب) */
+        @media (max-width: 900px) { .project-card { width: 100%; } .about-content { flex-direction: column-reverse; text-align: center; gap: 20px; } .about-photo-container { width: 220px; height: 220px; margin-bottom: 30px; } .stats-grid { justify-content: center; } }
+        @media (max-width: 600px) { h1 { font-size: 34px; } h2.typing-container { font-size: 20px; } .app-gallery img { height: 220px; } .contact-phone { font-size: 20px; } .about-photo-container { width: 200px; height: 200px; } .stats-grid { gap: 8px; } .stat-card { padding: 15px 5px; border-radius: 10px; } .stat-number { font-size: 20px; } .stat-label { font-size: 11px; } }
     </style>
 </head>
 <body>
