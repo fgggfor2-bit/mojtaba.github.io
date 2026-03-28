@@ -42,33 +42,38 @@
         .btn-primary:hover, .btn-secondary:hover { transform: translateY(-3px); }
 
         .projects-grid { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; max-width: 1100px; padding: 0 10px; width: 100%; }
-        .project-card { background: rgba(22, 27, 34, 0.85); border: 1px solid #30363d; padding: 25px; border-radius: 15px; width: calc(50% - 20px); text-align: right; transition: border-color 0.3s ease; }
+        .project-card { background: rgba(22, 27, 34, 0.85); border: 1px solid #30363d; padding: 25px; border-radius: 15px; width: calc(50% - 20px); text-align: right; transition: border-color 0.3s ease; display: flex; flex-direction: column; }
         .project-card:hover { border-color: #00b4d8; }
         .project-card h3 { color: #00b4d8; margin-bottom: 10px; font-size: 22px; }
-        .project-card p { color: #a0aec0; font-size: 15px; line-height: 1.6; margin-bottom: 20px; min-height: 45px;}
+        .project-card p { color: #a0aec0; font-size: 15px; line-height: 1.6; margin-bottom: 15px; flex-grow: 1; }
         
-        /* تصميم معرض الصور الأفقي (مثل متجر التطبيقات) */
+        /* زر إظهار وإخفاء الصور */
+        .toggle-btn { display: inline-block; color: #00b4d8; font-size: 14px; font-weight: 700; cursor: pointer; padding: 8px 15px; border: 1px solid #00b4d8; border-radius: 8px; transition: 0.3s; align-self: flex-start; user-select: none; }
+        .toggle-btn:hover { background-color: #00b4d8; color: #fff; }
+
+        /* معرض الصور (مخفي افتراضياً) */
         .app-gallery {
-            display: flex;
+            display: none; /* مخفي في البداية */
             overflow-x: auto;
             gap: 12px;
-            padding-bottom: 10px;
+            padding-top: 20px;
+            padding-bottom: 5px;
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
-            -ms-overflow-style: none; /* إخفاء شريط التمرير في انترنت اكسبلورر */
-            scrollbar-width: none; /* إخفاء شريط التمرير في فايرفوكس */
+            -ms-overflow-style: none; 
+            scrollbar-width: none; 
+            animation: fadeIn 0.4s ease;
         }
         
-        /* إخفاء شريط التمرير في كروم وسفاري مع الحفاظ على السحب */
-        .app-gallery::-webkit-scrollbar {
-            display: none;
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .app-gallery::-webkit-scrollbar { display: none; }
 
         .app-gallery img {
-            height: 250px; /* طول الصورة (مناسب للقطات شاشة الموبايل) */
+            height: 250px; 
             border-radius: 10px;
             border: 1px solid #2d3748;
-            flex-shrink: 0; /* منع انكماش الصور */
+            flex-shrink: 0; 
             scroll-snap-align: start;
             object-fit: contain;
             background-color: #0d1117;
@@ -105,14 +110,14 @@
 
         <section id="work">
             <h2 class="section-title">أبرز أعمالي</h2>
-            <p style="color: #a0aec0; margin-top: -30px; margin-bottom: 30px; font-size: 14px;">(اسحب الصور يميناً ويساراً للمشاهدة)</p>
             
             <div class="projects-grid">
                 
                 <div class="project-card">
                     <h3>تطبيق مكتبة الأمل</h3>
                     <p>تطبيق مخصص لإدارة مكتبة الأمل للقرطاسية والاستنساخ وتسهيل خدماتها للزبائن.</p>
-                    <div class="app-gallery">
+                    <div class="toggle-btn" onclick="toggleGallery('gallery-alamal', this)">مشاهدة الصور ↓</div>
+                    <div class="app-gallery" id="gallery-alamal">
                         <img src="Screenshot_20260323_194551.jpg" alt="صورة 1 مكتبة الأمل">
                         <img src="Screenshot_20260323_194644.jpg" alt="صورة 2 مكتبة الأمل">
                         <img src="Screenshot_20260323_194612.jpg" alt="صورة 3 مكتبة الأمل">
@@ -122,7 +127,8 @@
                 <div class="project-card">
                     <h3>تطبيق غازي</h3>
                     <p>تطبيق متكامل لتسهيل عملية طلب أسطوانات الغاز وتوصيلها للمستخدمين.</p>
-                    <div class="app-gallery">
+                    <div class="toggle-btn" onclick="toggleGallery('gallery-ghazi', this)">مشاهدة الصور ↓</div>
+                    <div class="app-gallery" id="gallery-ghazi">
                         <img src="IMG_20260325_040723_531.jpg" alt="صورة 1 تطبيق غازي">
                     </div>
                 </div>
@@ -130,7 +136,8 @@
                 <div class="project-card">
                     <h3>تطبيق خزاناتي</h3>
                     <p>تطبيق متكامل لخدمة توصيل خزانات المياه بسهولة وسرعة ومتابعة الطلبات.</p>
-                    <div class="app-gallery">
+                    <div class="toggle-btn" onclick="toggleGallery('gallery-khazanaty', this)">مشاهدة الصور ↓</div>
+                    <div class="app-gallery" id="gallery-khazanaty">
                         <img src="Screenshot_20260319_200413.jpg" alt="صورة 1 تطبيق خزاناتي">
                         <img src="IMG_20260319_120827.png" alt="صورة 2 تطبيق خزاناتي">
                     </div>
@@ -139,7 +146,8 @@
                 <div class="project-card">
                     <h3>تطبيق دلال</h3>
                     <p>تطبيق خدمي متكامل مصمم لتوفير تجربة مستخدم سلسة وتلبية الاحتياجات بكفاءة.</p>
-                    <div class="app-gallery">
+                    <div class="toggle-btn" onclick="toggleGallery('gallery-dalal', this)">مشاهدة الصور ↓</div>
+                    <div class="app-gallery" id="gallery-dalal">
                         <img src="Screenshot_20260324_213603.jpg" alt="صورة 1 تطبيق دلال">
                     </div>
                 </div>
@@ -164,6 +172,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 
     <script>
+        // دالة إظهار وإخفاء الصور
+        function toggleGallery(galleryId, btnElement) {
+            const gallery = document.getElementById(galleryId);
+            if (gallery.style.display === 'flex') {
+                gallery.style.display = 'none';
+                btnElement.innerHTML = 'مشاهدة الصور ↓';
+            } else {
+                gallery.style.display = 'flex';
+                btnElement.innerHTML = 'إخفاء الصور ↑';
+            }
+        }
+
+        // تشغيل الخلفية المتحركة
         window.onload = function() {
             if(window.particlesJS) {
                 particlesJS("particles-js", {
@@ -174,6 +195,7 @@
             }
         };
 
+        // تشغيل تأثير الكتابة
         const texts = ["مبرمج تطبيقات موبايل", "مطور برمجيات متكاملة", "متخصص حلول الأعمال"];
         let count = 0; let index = 0; let currentText = ""; let letter = "";
         (function type() {
@@ -186,3 +208,4 @@
     </script>
 </body>
 </html>
+ 
