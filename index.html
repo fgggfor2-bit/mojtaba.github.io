@@ -49,81 +49,61 @@
         .btn-secondary { background-color: #1a202c; color: #ffffff; border: 1px solid #2d3748; }
         .btn-primary:hover, .btn-secondary:hover { transform: translateY(-3px); }
 
-        /* --- قسم نبذة عني المطور --- */
+        /* --- قسم نبذة عني --- */
         .about-content { display: flex; gap: 40px; align-items: center; max-width: 1000px; width: 100%; text-align: right; justify-content: center; margin-bottom: 40px; }
-        
-        /* حاوية الصورة الدائرية */
-        .about-photo-container { 
-            position: relative; 
-            width: 250px; 
-            height: 250px; /* طول وعرض متساوي للدائرة */
-            flex-shrink: 0; 
-            margin: 0 auto;
-        }
-        
-        /* الإطار المنقط الدائري */
-        .about-photo-container::after { 
-            content: ''; 
-            position: absolute; 
-            top: 5px; 
-            right: 5px; 
-            bottom: -10px;
-            left: -10px;
-            border: 3px dashed #00b4d8; 
-            border-radius: 50%; /* دائري */
-            z-index: -1; 
-        }
-        
-        .about-photo { 
-            width: 100%; 
-            height: 100%; 
-            border-radius: 50%; /* دائري */
-            border: 3px solid #30363d; 
-            animation: float 3s ease-in-out infinite; 
-            object-fit: cover; /* يملأ الدائرة بدون تشويه */
-            object-position: center 20%; /* تم التعديل إلى 20% حسب طلبك */
-            background-color: #161b22;
-        }
-        
-        /* تعريف الأنميشن للصورة */
+        .about-photo-container { position: relative; width: 250px; height: 250px; flex-shrink: 0; margin: 0 auto; }
+        .about-photo-container::after { content: ''; position: absolute; top: 5px; right: 5px; bottom: -10px; left: -10px; border: 3px dashed #00b4d8; border-radius: 50%; z-index: -1; }
+        .about-photo { width: 100%; height: 100%; border-radius: 50%; border: 3px solid #30363d; animation: float 3s ease-in-out infinite; object-fit: cover; object-position: center 20%; background-color: #161b22; }
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
-
         .about-text { flex-grow: 1; }
         .about-text p { color: #a0aec0; font-size: 17px; margin-bottom: 30px; line-height: 1.8; }
 
-        /* حاوية المربعات الصغيرة (الإحصائيات) تم التعديل لتكون جنباً إلى جنب دائماً */
         .stats-grid { display: flex; gap: 15px; justify-content: center; width: 100%; flex-wrap: nowrap; }
         .stat-card { background: rgba(22, 27, 34, 0.85); border: 1px solid #30363d; padding: 20px 10px; border-radius: 12px; flex: 1; text-align: center; transition: all 0.3s ease; }
         .stat-card:hover { border-color: #00b4d8; transform: translateY(-5px); }
         .stat-number { font-size: 26px; font-weight: 800; color: #00b4d8; margin-bottom: 5px; }
         .stat-label { font-size: 13px; color: #a0aec0; font-weight: 500; }
 
-        /* قسم الأعمال - Work */
+        /* --- قسم الخدمات الجديد --- */
+        .services-grid { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; width: 100%; max-width: 1100px; }
+        .service-card { background: rgba(22, 27, 34, 0.85); border: 1px solid #30363d; padding: 35px 20px; border-radius: 15px; width: calc(33.33% - 14px); text-align: center; transition: 0.3s ease; }
+        .service-card:hover { border-color: #00b4d8; transform: translateY(-5px); background-color: rgba(22, 27, 34, 0.95); }
+        .service-icon { font-size: 45px; margin-bottom: 20px; display: inline-block; filter: drop-shadow(0 0 10px rgba(0, 180, 216, 0.3)); }
+        .service-card h3 { color: #ffffff; margin-bottom: 15px; font-size: 20px; }
+        .service-card p { color: #a0aec0; font-size: 15px; line-height: 1.6; }
+
+        /* --- قسم الأعمال --- */
         .projects-grid { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; max-width: 1100px; padding: 0 10px; width: 100%; }
         .project-card { background: rgba(22, 27, 34, 0.85); border: 1px solid #30363d; padding: 25px; border-radius: 15px; width: calc(50% - 10px); text-align: right; transition: border-color 0.3s ease; display: flex; flex-direction: column; }
         .project-card:hover { border-color: #00b4d8; }
         .project-card h3 { color: #00b4d8; margin-bottom: 10px; font-size: 22px; }
         .project-card p { color: #a0aec0; font-size: 15px; line-height: 1.6; margin-bottom: 15px; flex-grow: 1; }
-        
-        /* زر إظهار وإخفاء الصور */
         .toggle-btn { display: inline-block; color: #00b4d8; font-size: 14px; font-weight: 700; cursor: pointer; padding: 8px 15px; border: 1px solid #00b4d8; border-radius: 8px; transition: 0.3s; align-self: flex-start; user-select: none; }
         .toggle-btn:hover { background-color: #00b4d8; color: #fff; }
-
-        /* معرض الصور (مخفي افتراضياً) */
         .app-gallery { display: none; overflow-x: auto; gap: 12px; padding-top: 20px; padding-bottom: 5px; scroll-snap-type: x mandatory; scroll-behavior: smooth; -ms-overflow-style: none; scrollbar-width: none; animation: fadeIn 0.4s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
         .app-gallery::-webkit-scrollbar { display: none; }
         .app-gallery img { height: 250px; border-radius: 10px; border: 1px solid #2d3748; flex-shrink: 0; scroll-snap-align: start; object-fit: contain; background-color: #0d1117; }
 
-        /* قسم التواصل - Contact */
+        /* --- قسم التواصل --- */
         .contact-info { background: rgba(22, 27, 34, 0.85); padding: 40px 30px; border-radius: 15px; border: 1px solid #30363d; max-width: 500px; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px; }
-        .contact-info p { color: #a0aec0; font-size: 16px; margin-bottom: 10px; }
+        .contact-info p { color: #a0aec0; font-size: 16px; margin-bottom: 10px; text-align: center; }
         .contact-phone { display: flex; align-items: center; justify-content: right; gap: 10px; margin-bottom: 5px; color: #ffffff; font-weight: 700; font-size: 24px; direction: ltr; letter-spacing: 1px;}
         .contact-detail { color: #a0aec0; font-size: 14px; display: flex; gap: 8px; align-items: center; margin-bottom: 15px; }
+        
+        /* أزرار التواصل الاجتماعي */
+        .social-links { display: flex; gap: 15px; justify-content: center; margin-top: 10px; width: 100%; }
+        .social-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #fff; text-decoration: none; transition: 0.3s; background: rgba(26, 32, 44, 0.8); border: 1px solid #30363d; }
+        .social-btn:hover { background: #00b4d8; border-color: #00b4d8; transform: translateY(-3px); }
 
-        /* للتوافق مع الهواتف (تم التعديل للحفاظ على المربعات جنباً إلى جنب) */
-        @media (max-width: 900px) { .project-card { width: 100%; } .about-content { flex-direction: column-reverse; text-align: center; gap: 20px; } .about-photo-container { width: 220px; height: 220px; margin-bottom: 30px; } .stats-grid { justify-content: center; } }
-        @media (max-width: 600px) { h1 { font-size: 34px; } h2.typing-container { font-size: 20px; } .app-gallery img { height: 220px; } .contact-phone { font-size: 20px; } .about-photo-container { width: 200px; height: 200px; } .stats-grid { gap: 8px; } .stat-card { padding: 15px 5px; border-radius: 10px; } .stat-number { font-size: 20px; } .stat-label { font-size: 11px; } }
+        /* --- الفوتر (التذييل) --- */
+        footer { text-align: center; padding: 25px 20px; background: rgba(13, 17, 23, 0.95); border-top: 1px solid rgba(255,255,255,0.05); width: 100%; margin-top: auto; z-index: 10; pointer-events: auto;}
+        footer p { color: #a0aec0; font-size: 15px; }
+        footer span { color: #00b4d8; font-weight: bold; }
+
+        /* للتوافق مع الهواتف */
+        @media (max-width: 900px) { .project-card, .service-card { width: calc(50% - 10px); } .about-content { flex-direction: column-reverse; text-align: center; gap: 20px; } .about-photo-container { width: 220px; height: 220px; margin-bottom: 30px; } .stats-grid { justify-content: center; } }
+        @media (max-width: 600px) { h1 { font-size: 34px; } h2.typing-container { font-size: 20px; } .app-gallery img { height: 220px; } .contact-phone { font-size: 20px; } .about-photo-container { width: 200px; height: 200px; } .stats-grid { gap: 8px; } .stat-card { padding: 15px 5px; border-radius: 10px; } .stat-number { font-size: 20px; } .stat-label { font-size: 11px; } .service-card { width: 100%; } }
     </style>
 </head>
 <body>
@@ -173,6 +153,27 @@
                             <div class="stat-label">عميل سعيد</div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <h2 class="section-title">خدماتي</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>تطبيقات الموبايل</h3>
+                    <p>برمجة وتصميم تطبيقات احترافية وسريعة تتوافق مع أنظمة iOS و Android لتلبية احتياجات عملك.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>أنظمة الإدارة</h3>
+                    <p>تطوير أنظمة متكاملة وتطبيقات مخصصة لإدارة المطاعم، المحلات التجارية، والمشاريع المختلفة.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3>أتمتة وبوتات</h3>
+                    <p>تطوير بوتات تليكرام ذكية لأتمتة المهام، إدارة المجموعات، سحب الأخبار، وتسهيل التواصل مع عملائك.</p>
                 </div>
             </div>
         </section>
@@ -227,15 +228,28 @@
         <section id="contact">
             <h2 class="section-title">تواصل معي</h2>
             <div class="contact-info">
-                <p>متواجد في كربلاء المقدسة ومستعد لمناقشة مشروعكم.</p>
+                <p>متواجد في كربلاء المقدسة ومستعد لمناقشة مشروعكم برمجياً.</p>
                 <div class="contact-detail">📞 رقم الهاتف للاتصال والواتساب:</div>
                 <div class="contact-phone">0780 738 9172</div>
                 <div class="contact-detail">📍 كربلاء المقدسة، العراق</div>
-                <a href="tel:07807389172" class="btn btn-primary">
-                    <span>📱</span> اتصل بي الآن
+                
+                <a href="https://wa.me/9647807389172" target="_blank" class="btn btn-primary" style="margin-bottom: 15px;">
+                    <span>💬</span> راسلني على واتساب
                 </a>
+
+                <div class="social-links">
+                    <a href="https://t.me/R_tk_n" target="_blank" class="social-btn" title="تليكرام">✈️</a>
+                    <a href="https://instagram.com/4j.dw" target="_blank" class="social-btn" title="انستكرام">📸</a>
+                    <a href="https://github.com/fgggfor2-bit" target="_blank" class="social-btn" title="جيتهاب">💻</a>
+                </div>
+
             </div>
         </section>
+
+        <footer>
+            <p>© 2026 جميع الحقوق محفوظة | صُنع بشغف بواسطة <span>مجتبى الكعبي</span></p>
+        </footer>
+
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
