@@ -52,49 +52,44 @@
         /* --- قسم نبذة عني المطور --- */
         .about-content { display: flex; gap: 40px; align-items: center; max-width: 1000px; width: 100%; text-align: right; justify-content: center; margin-bottom: 40px; }
         
-        /* حاوية الصورة المتحركة (تم تحديث الأبعاد والخصائص لإظهار الوجه كاملاً) */
+        /* حاوية الصورة الدائرية المضبوطة */
         .about-photo-container { 
             position: relative; 
-            /* ألغينا العرض والارتفاع الثابت ليكون أكثر مرونة */
-            width: 100%;
-            max-width: 250px; /* أقصى عرض مسموح به */
+            width: 250px; 
+            height: 250px; /* طول وعرض متساوي للدائرة */
             flex-shrink: 0; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
             margin: 0 auto;
         }
         
-        /* الإطار الخلفي المنقط المعدل ليتناسب مع حجم الصورة المتغير */
+        /* الإطار المنقط الدائري */
         .about-photo-container::after { 
             content: ''; 
             position: absolute; 
-            top: 10px; 
-            right: 10px; 
+            top: 5px; 
+            right: 5px; 
             bottom: -10px;
             left: -10px;
-            border: 2px dashed #00b4d8; /* جعلناه منقط dashed لمظهر أجمل */
-            border-radius: 20px; 
+            border: 3px dashed #00b4d8; 
+            border-radius: 50%; /* دائري */
             z-index: -1; 
         }
         
         .about-photo { 
-            width: 100%; /* تأخذ كامل عرض الحاوية */
-            height: auto; /* الارتفاع يتحدد تلقائياً لإظهار الصورة كاملة بدون قص */
-            display: block; /* إلغاء أي مسافات بيضاء افتراضية */
-            border-radius: 20px; 
-            border: 2px solid #30363d; 
-            /* تأثير الحركة العائمة للأعلى والأسفل لجعل الصورة حيوية */
+            width: 100%; 
+            height: 100%; 
+            border-radius: 50%; /* دائري */
+            border: 3px solid #30363d; 
             animation: float 3s ease-in-out infinite; 
-            /* object-fit: cover; // تم إلغاء هذه الخاصية القديمة لضمان عدم القص */
-            object-fit: contain; /* هذا يضمن ظهورها كاملة داخل حدودها إذا لزم الأمر */
+            object-fit: cover; /* يملأ الدائرة بدون تشويه */
+            object-position: top center; /* يركز على أعلى الصورة (الوجه) حتى ما ينكص */
+            background-color: #161b22;
         }
         
         /* تعريف الأنميشن للصورة */
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
 
         .about-text { flex-grow: 1; }
-        .about-text p { color: #a0aec0; font-size: 17px; margin-bottom: 30px; line-height: 1.8; text-align: right; }
+        .about-text p { color: #a0aec0; font-size: 17px; margin-bottom: 30px; line-height: 1.8; }
 
         /* حاوية المربعات الصغيرة (الإحصائيات) */
         .stats-grid { display: flex; gap: 20px; flex-wrap: wrap; justify-content: right; width: 100%; }
@@ -127,8 +122,8 @@
         .contact-detail { color: #a0aec0; font-size: 14px; display: flex; gap: 8px; align-items: center; margin-bottom: 15px; }
 
         /* للتوافق مع الهواتف */
-        @media (max-width: 900px) { .project-card { width: 100%; } .about-content { flex-direction: column; text-align: center; gap: 20px; } .about-photo-container { max-width: 200px; margin-bottom: 30px; } .stats-grid { justify-content: center; } .stat-card { width: calc(50% - 10px); } }
-        @media (max-width: 600px) { h1 { font-size: 34px; } h2.typing-container { font-size: 20px; } .app-gallery img { height: 220px; } .contact-phone { font-size: 20px; } .stat-card { width: 100%; } }
+        @media (max-width: 900px) { .project-card { width: 100%; } .about-content { flex-direction: column-reverse; text-align: center; gap: 20px; } .about-photo-container { width: 220px; height: 220px; margin-bottom: 30px; } .stats-grid { justify-content: center; } .stat-card { width: calc(50% - 10px); } }
+        @media (max-width: 600px) { h1 { font-size: 34px; } h2.typing-container { font-size: 20px; } .app-gallery img { height: 220px; } .contact-phone { font-size: 20px; } .about-photo-container { width: 200px; height: 200px; } .stat-card { width: 100%; } }
     </style>
 </head>
 <body>
@@ -246,7 +241,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 
     <script>
-        // دالة إظهار وإخفاء الصور في قسم الأعمال
         function toggleGallery(galleryId, btnElement) {
             const gallery = document.getElementById(galleryId);
             if (gallery.style.display === 'flex') {
@@ -258,7 +252,6 @@
             }
         }
 
-        // تشغيل الخلفية المتحركة (النقاط المتصلة)
         window.onload = function() {
             if(window.particlesJS) {
                 particlesJS("particles-js", {
@@ -269,7 +262,6 @@
             }
         };
 
-        // تشغيل تأثير الكتابة للعناوين المهنية
         const texts = ["مبرمج تطبيقات موبايل", "مطور برمجيات متكاملة", "متخصص حلول الأعمال"];
         let count = 0; let index = 0; let currentText = ""; let letter = "";
         (function type() {
