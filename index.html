@@ -48,45 +48,39 @@
         .btn-secondary { background-color: #1a202c; color: #ffffff; border: 1px solid #2d3748; }
         .btn-primary:hover, .btn-secondary:hover { transform: translateY(-3px); }
 
-        /* --- قسم نبذة عني المطور (التعديلات هنا لظهور الصورة كاملة) --- */
+        /* --- قسم نبذة عني المطور (تعديل الصورة الدائرية) --- */
         .about-content { display: flex; gap: 40px; align-items: center; max-width: 1000px; width: 100%; text-align: right; justify-content: center; margin-bottom: 40px; }
         
-        /* حاوية الصورة المعدلة */
+        /* حاوية الصورة الدائرية */
         .about-photo-container { 
             position: relative; 
-            /* ألغينا العرض والارتفاع الثابت الصارم */
-            width: 100%;
-            max-width: 280px; /* أقصى عرض مسموح به */
+            width: 260px; /* العرض */
+            height: 260px; /* الطول مساوي للعرض لتكوين دائرة */
             flex-shrink: 0; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin: 0 auto;
         }
         
-        /* الإطار الخلفي المنقط المعدل ليتناسب مع حجم الصورة المتغير */
+        /* الإطار الخلفي المنقط الدائري */
         .about-photo-container::after { 
             content: ''; 
             position: absolute; 
-            /* جعلنا الإطار يتمدد خلف الصورة تماماً مع هامش بسيط */
-            top: 10px; 
-            right: 10px; 
+            top: 5px; 
+            right: 5px; 
             bottom: -10px;
             left: -10px;
-            border: 2px dashed #00b4d8; /* جعلناه منقط dashed لمظهر أجمل */
-            border-radius: 20px; 
+            border: 3px dashed #00b4d8; 
+            border-radius: 50%; /* يجعل الإطار دائرياً */
             z-index: -1; 
         }
         
         .about-photo { 
-            width: 100%; /* تأخذ كامل عرض الحاوية */
-            height: auto; /* الارتفاع يتحدد تلقائياً لإظهار الصورة كاملة بدون قص */
-            display: block; /* إلغاء أي مسافات بيضاء افتراضية */
-            border-radius: 20px; 
-            border: 2px solid #30363d; 
-            /* تأثير الحركة العائمة بقي كما هو */
+            width: 100%; 
+            height: 100%; 
+            border-radius: 50%; /* يجعل الصورة دائرية */
+            border: 3px solid #30363d; 
             animation: float 3s ease-in-out infinite; 
-            /* تأكدنا من إلغاء object-fit: cover القديمة */
-            object-fit: contain; /* هذا يضمن ظهورها كاملة داخل حدودها إذا لزم الأمر */
+            object-fit: cover; /* يملأ الدائرة بالصورة */
+            object-position: center 20%; /* يركز على الوجه في الصورة المستطيلة */
         }
         
         /* تعريف الأنميشن للصورة */
@@ -126,7 +120,7 @@
         .contact-detail { color: #a0aec0; font-size: 14px; display: flex; gap: 8px; align-items: center; margin-bottom: 15px; }
 
         /* للتوافق مع الهواتف */
-        @media (max-width: 900px) { .project-card { width: 100%; } .about-content { flex-direction: column-reverse; text-align: center; gap: 20px; } .about-photo-container { max-width: 220px; margin-bottom: 30px; } .stats-grid { justify-content: center; } .stat-card { width: calc(50% - 10px); } }
+        @media (max-width: 900px) { .project-card { width: 100%; } .about-content { flex-direction: column-reverse; text-align: center; gap: 20px; } .about-photo-container { width: 220px; height: 220px; margin-bottom: 30px; } .stats-grid { justify-content: center; } .stat-card { width: calc(50% - 10px); } }
         @media (max-width: 600px) { h1 { font-size: 34px; } h2.typing-container { font-size: 20px; } .app-gallery img { height: 220px; } .contact-phone { font-size: 20px; } .stat-card { width: 100%; } }
     </style>
 </head>
