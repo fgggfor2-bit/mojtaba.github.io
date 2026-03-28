@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مجتبى الكعبي - مبرمج تطبيقات موبايل</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         /* الإعدادات الأساسية */
@@ -64,11 +65,11 @@
         .stat-number { font-size: 26px; font-weight: 800; color: #00b4d8; margin-bottom: 5px; }
         .stat-label { font-size: 13px; color: #a0aec0; font-weight: 500; }
 
-        /* --- قسم الخدمات الجديد --- */
+        /* --- قسم الخدمات --- */
         .services-grid { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; width: 100%; max-width: 1100px; }
         .service-card { background: rgba(22, 27, 34, 0.85); border: 1px solid #30363d; padding: 35px 20px; border-radius: 15px; width: calc(33.33% - 14px); text-align: center; transition: 0.3s ease; }
         .service-card:hover { border-color: #00b4d8; transform: translateY(-5px); background-color: rgba(22, 27, 34, 0.95); }
-        .service-icon { font-size: 45px; margin-bottom: 20px; display: inline-block; filter: drop-shadow(0 0 10px rgba(0, 180, 216, 0.3)); }
+        .service-icon { font-size: 45px; margin-bottom: 20px; display: inline-block; filter: drop-shadow(0 0 10px rgba(0, 180, 216, 0.3)); color: #00b4d8; }
         .service-card h3 { color: #ffffff; margin-bottom: 15px; font-size: 20px; }
         .service-card p { color: #a0aec0; font-size: 15px; line-height: 1.6; }
 
@@ -91,9 +92,9 @@
         .contact-phone { display: flex; align-items: center; justify-content: right; gap: 10px; margin-bottom: 5px; color: #ffffff; font-weight: 700; font-size: 24px; direction: ltr; letter-spacing: 1px;}
         .contact-detail { color: #a0aec0; font-size: 14px; display: flex; gap: 8px; align-items: center; margin-bottom: 15px; }
         
-        /* أزرار التواصل الاجتماعي */
+        /* أزرار التواصل الاجتماعي الاحترافية */
         .social-links { display: flex; gap: 15px; justify-content: center; margin-top: 10px; width: 100%; }
-        .social-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #fff; text-decoration: none; transition: 0.3s; background: rgba(26, 32, 44, 0.8); border: 1px solid #30363d; }
+        .social-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; color: #fff; text-decoration: none; transition: 0.3s; background: rgba(26, 32, 44, 0.8); border: 1px solid #30363d; }
         .social-btn:hover { background: #00b4d8; border-color: #00b4d8; transform: translateY(-3px); }
 
         /* --- الفوتر (التذييل) --- */
@@ -101,9 +102,25 @@
         footer p { color: #a0aec0; font-size: 15px; }
         footer span { color: #00b4d8; font-weight: bold; }
 
-        /* للتوافق مع الهواتف */
-        @media (max-width: 900px) { .project-card, .service-card { width: calc(50% - 10px); } .about-content { flex-direction: column-reverse; text-align: center; gap: 20px; } .about-photo-container { width: 220px; height: 220px; margin-bottom: 30px; } .stats-grid { justify-content: center; } }
-        @media (max-width: 600px) { h1 { font-size: 34px; } h2.typing-container { font-size: 20px; } .app-gallery img { height: 220px; } .contact-phone { font-size: 20px; } .about-photo-container { width: 200px; height: 200px; } .stats-grid { gap: 8px; } .stat-card { padding: 15px 5px; border-radius: 10px; } .stat-number { font-size: 20px; } .stat-label { font-size: 11px; } .service-card { width: 100%; } }
+        /* --- للتوافق مع الهواتف والأجهزة اللوحية --- */
+        @media (max-width: 900px) { 
+            .project-card, .service-card { width: calc(50% - 10px); } 
+            .about-content { flex-direction: column; text-align: center; gap: 20px; } /* تم التعديل لتكون الصورة في الأعلى */
+            .about-photo-container { width: 220px; height: 220px; margin-bottom: 20px; } 
+            .stats-grid { justify-content: center; } 
+        }
+        @media (max-width: 600px) { 
+            h1 { font-size: 34px; } 
+            h2.typing-container { font-size: 20px; } 
+            .app-gallery img { height: 220px; } 
+            .contact-phone { font-size: 20px; } 
+            .about-photo-container { width: 200px; height: 200px; } 
+            .stats-grid { gap: 8px; } 
+            .stat-card { padding: 15px 5px; border-radius: 10px; } 
+            .stat-number { font-size: 20px; } 
+            .stat-label { font-size: 11px; } 
+            .service-card, .project-card { width: 100%; } /* تم إصلاح مشكلة المشاريع لتأخذ العرض الكامل بالموبايل */
+        }
     </style>
 </head>
 <body>
@@ -161,17 +178,17 @@
             <h2 class="section-title">خدماتي</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">📱</div>
+                    <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
                     <h3>تطبيقات الموبايل</h3>
                     <p>برمجة وتصميم تطبيقات احترافية وسريعة تتوافق مع أنظمة iOS و Android لتلبية احتياجات عملك.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">💻</div>
+                    <div class="service-icon"><i class="fas fa-store"></i></div>
                     <h3>أنظمة الإدارة</h3>
                     <p>تطوير أنظمة متكاملة وتطبيقات مخصصة لإدارة المطاعم، المحلات التجارية، والمشاريع المختلفة.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🤖</div>
+                    <div class="service-icon"><i class="fas fa-robot"></i></div>
                     <h3>أتمتة وبوتات</h3>
                     <p>تطوير بوتات تليكرام ذكية لأتمتة المهام، إدارة المجموعات، سحب الأخبار، وتسهيل التواصل مع عملائك.</p>
                 </div>
@@ -234,13 +251,13 @@
                 <div class="contact-detail">📍 كربلاء المقدسة، العراق</div>
                 
                 <a href="https://wa.me/9647807389172" target="_blank" class="btn btn-primary" style="margin-bottom: 15px;">
-                    <span>💬</span> راسلني على واتساب
+                    <i class="fab fa-whatsapp" style="margin-left: 8px;"></i> راسلني على واتساب
                 </a>
 
                 <div class="social-links">
-                    <a href="https://t.me/R_tk_n" target="_blank" class="social-btn" title="تليكرام">✈️</a>
-                    <a href="https://instagram.com/4j.dw" target="_blank" class="social-btn" title="انستكرام">📸</a>
-                    <a href="https://github.com/fgggfor2-bit" target="_blank" class="social-btn" title="جيتهاب">💻</a>
+                    <a href="https://t.me/R_tk_n" target="_blank" class="social-btn" title="تليكرام"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="https://instagram.com/4j.dw" target="_blank" class="social-btn" title="انستكرام"><i class="fab fa-instagram"></i></a>
+                    <a href="https://github.com/fgggfor2-bit" target="_blank" class="social-btn" title="جيتهاب"><i class="fab fa-github"></i></a>
                 </div>
 
             </div>
