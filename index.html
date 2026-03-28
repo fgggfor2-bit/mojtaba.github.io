@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     
     <style>
+        /* الإعدادات الأساسية */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
         html { scroll-behavior: smooth; }
         
@@ -15,21 +16,27 @@
             background-image: radial-gradient(circle at 50% 50%, #161b22 0%, #0d1117 100%);
         }
 
+        /* حاوية الخلفية المتحركة */
         #particles-js { position: fixed; width: 100%; height: 100%; z-index: 1; top: 0; left: 0; pointer-events: auto; }
 
+        /* المحتوى الأساسي */
         .main-content { position: relative; z-index: 2; pointer-events: none; }
         .main-content * { pointer-events: auto; }
 
+        /* الهيدر */
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; position: fixed; width: 100%; top: 0; background: rgba(13, 17, 23, 0.85); backdrop-filter: blur(5px); z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .logo { font-size: 24px; font-weight: 800; color: #ffffff; }
         .logo span { color: #00b4d8; }
 
+        /* الأقسام العامة */
         section { min-height: 100vh; padding: 100px 20px 50px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
         .section-title { font-size: 36px; margin-bottom: 40px; color: #ffffff; text-align: center; width: 100%; }
         
+        /* القسم الرئيسي - Hero */
         .status-badge { border: 1px solid #00b4d8; color: #00b4d8; padding: 8px 20px; border-radius: 50px; font-size: 14px; font-weight: 500; margin-bottom: 30px; background: rgba(0, 180, 216, 0.1); }
         h1 { font-size: 48px; font-weight: 800; margin-bottom: 10px; }
         
+        /* تأثير الكتابة */
         h2.typing-container { font-size: 28px; color: #00b4d8; font-weight: 700; margin-bottom: 20px; min-height: 40px; }
         .cursor { display: inline-block; width: 3px; background-color: #00b4d8; animation: blink 1s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
@@ -41,49 +48,86 @@
         .btn-secondary { background-color: #1a202c; color: #ffffff; border: 1px solid #2d3748; }
         .btn-primary:hover, .btn-secondary:hover { transform: translateY(-3px); }
 
+        /* --- قسم نبذة عني المطور (التعديلات هنا لظهور الصورة كاملة) --- */
+        .about-content { display: flex; gap: 40px; align-items: center; max-width: 1000px; width: 100%; text-align: right; justify-content: center; margin-bottom: 40px; }
+        
+        /* حاوية الصورة المعدلة */
+        .about-photo-container { 
+            position: relative; 
+            /* ألغينا العرض والارتفاع الثابت الصارم */
+            width: 100%;
+            max-width: 280px; /* أقصى عرض مسموح به */
+            flex-shrink: 0; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* الإطار الخلفي المنقط المعدل ليتناسب مع حجم الصورة المتغير */
+        .about-photo-container::after { 
+            content: ''; 
+            position: absolute; 
+            /* جعلنا الإطار يتمدد خلف الصورة تماماً مع هامش بسيط */
+            top: 10px; 
+            right: 10px; 
+            bottom: -10px;
+            left: -10px;
+            border: 2px dashed #00b4d8; /* جعلناه منقط dashed لمظهر أجمل */
+            border-radius: 20px; 
+            z-index: -1; 
+        }
+        
+        .about-photo { 
+            width: 100%; /* تأخذ كامل عرض الحاوية */
+            height: auto; /* الارتفاع يتحدد تلقائياً لإظهار الصورة كاملة بدون قص */
+            display: block; /* إلغاء أي مسافات بيضاء افتراضية */
+            border-radius: 20px; 
+            border: 2px solid #30363d; 
+            /* تأثير الحركة العائمة بقي كما هو */
+            animation: float 3s ease-in-out infinite; 
+            /* تأكدنا من إلغاء object-fit: cover القديمة */
+            object-fit: contain; /* هذا يضمن ظهورها كاملة داخل حدودها إذا لزم الأمر */
+        }
+        
+        /* تعريف الأنميشن للصورة */
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+
+        .about-text { flex-grow: 1; }
+        .about-text p { color: #a0aec0; font-size: 17px; margin-bottom: 30px; line-height: 1.8; }
+
+        /* حاوية المربعات الصغيرة (الإحصائيات) */
+        .stats-grid { display: flex; gap: 20px; flex-wrap: wrap; justify-content: right; width: 100%; }
+        .stat-card { background: rgba(22, 27, 34, 0.85); border: 1px solid #30363d; padding: 20px; border-radius: 12px; width: calc(33.33% - 14px); text-align: center; transition: all 0.3s ease; }
+        .stat-card:hover { border-color: #00b4d8; transform: translateY(-5px); }
+        .stat-number { font-size: 28px; font-weight: 800; color: #00b4d8; margin-bottom: 5px; }
+        .stat-label { font-size: 14px; color: #a0aec0; font-weight: 500; }
+
+        /* قسم الأعمال - Work */
         .projects-grid { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; max-width: 1100px; padding: 0 10px; width: 100%; }
-        .project-card { background: rgba(22, 27, 34, 0.85); border: 1px solid #30363d; padding: 25px; border-radius: 15px; width: calc(50% - 20px); text-align: right; transition: border-color 0.3s ease; }
+        .project-card { background: rgba(22, 27, 34, 0.85); border: 1px solid #30363d; padding: 25px; border-radius: 15px; width: calc(50% - 10px); text-align: right; transition: border-color 0.3s ease; display: flex; flex-direction: column; }
         .project-card:hover { border-color: #00b4d8; }
         .project-card h3 { color: #00b4d8; margin-bottom: 10px; font-size: 22px; }
-        .project-card p { color: #a0aec0; font-size: 15px; line-height: 1.6; margin-bottom: 20px; min-height: 45px;}
+        .project-card p { color: #a0aec0; font-size: 15px; line-height: 1.6; margin-bottom: 15px; flex-grow: 1; }
         
-        /* --- معرض الصور الأفقي المطور (مثل متجر التطبيقات) --- */
-        .app-gallery {
-            display: flex;
-            overflow-x: auto;
-            gap: 15px;
-            padding-bottom: 10px;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            -ms-overflow-style: none; /* إخفاء شريط التمرير في انترنت اكسبلورر */
-            scrollbar-width: none; /* إخفاء شريط التمرير في فايرفوكس */
-        }
-        
-        /* إخفاء شريط التمرير في كروم وسفاري مع الحفاظ على السحب */
-        .app-gallery::-webkit-scrollbar {
-            display: none;
-        }
+        /* زر إظهار وإخفاء الصور */
+        .toggle-btn { display: inline-block; color: #00b4d8; font-size: 14px; font-weight: 700; cursor: pointer; padding: 8px 15px; border: 1px solid #00b4d8; border-radius: 8px; transition: 0.3s; align-self: flex-start; user-select: none; }
+        .toggle-btn:hover { background-color: #00b4d8; color: #fff; }
 
-        .app-gallery img {
-            width: calc(80% - 15px); /* عرض الصورة لضمان ظهور جزء من الصورة التالية */
-            max-width: 300px; /* العرض الأقصى للصورة */
-            aspect-ratio: 9 / 16; /* توحيد الأبعاد (مستطيل موبايل) لضمان عدم القطع */
-            border-radius: 12px;
-            border: 1px solid #2d3748;
-            flex-shrink: 0; /* منع انكماش الصور */
-            scroll-snap-align: center; /* توسيط الصورة عند التمرير */
-            object-fit: contain; /* ضمان ظهور الصورة بالكامل دون قطع */
-            background-color: #0d1117;
-            padding: 5px; /* هامش داخلي بسيط */
-        }
+        /* معرض الصور (مخفي افتراضياً) */
+        .app-gallery { display: none; overflow-x: auto; gap: 12px; padding-top: 20px; padding-bottom: 5px; scroll-snap-type: x mandatory; scroll-behavior: smooth; -ms-overflow-style: none; scrollbar-width: none; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .app-gallery::-webkit-scrollbar { display: none; }
+        .app-gallery img { height: 250px; border-radius: 10px; border: 1px solid #2d3748; flex-shrink: 0; scroll-snap-align: start; object-fit: contain; background-color: #0d1117; }
 
+        /* قسم التواصل - Contact */
         .contact-info { background: rgba(22, 27, 34, 0.85); padding: 40px 30px; border-radius: 15px; border: 1px solid #30363d; max-width: 500px; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px; }
         .contact-info p { color: #a0aec0; font-size: 16px; margin-bottom: 10px; }
         .contact-phone { display: flex; align-items: center; justify-content: right; gap: 10px; margin-bottom: 5px; color: #ffffff; font-weight: 700; font-size: 24px; direction: ltr; letter-spacing: 1px;}
         .contact-detail { color: #a0aec0; font-size: 14px; display: flex; gap: 8px; align-items: center; margin-bottom: 15px; }
 
-        @media (max-width: 900px) { .project-card { width: 100%; } }
-        @media (max-width: 600px) { h1 { font-size: 34px; } h2.typing-container { font-size: 20px; } .app-gallery img { width: 90%; } .contact-phone { font-size: 20px; } }
+        /* للتوافق مع الهواتف */
+        @media (max-width: 900px) { .project-card { width: 100%; } .about-content { flex-direction: column-reverse; text-align: center; gap: 20px; } .about-photo-container { max-width: 220px; margin-bottom: 30px; } .stats-grid { justify-content: center; } .stat-card { width: calc(50% - 10px); } }
+        @media (max-width: 600px) { h1 { font-size: 34px; } h2.typing-container { font-size: 20px; } .app-gallery img { height: 220px; } .contact-phone { font-size: 20px; } .stat-card { width: 100%; } }
     </style>
 </head>
 <body>
@@ -92,30 +136,61 @@
 
     <div class="main-content">
         <header>
-            <div class="logo"><span>.</span>مجتبى الكعبي </div>
+            <div class="logo"><span>.</span>مجتبى</div>
         </header>
 
         <section id="home">
             <div class="status-badge">متاح للعمل الحر والمشاريع البرمجية</div>
-            <h1>المبرمج مجتبى الكعبي</h1>
+            <h1>أنا مجتبى الكعبي</h1>
             <h2 class="typing-container"><span id="typing-text"></span><span class="cursor">&nbsp;</span></h2>
             <p class="desc">أجمع بين دقة الأكواد البرمجية واللمسة الإبداعية، متخصص في تطوير تطبيقات الموبايل وحلول الأعمال المتكاملة.</p>
             <div class="buttons">
-                <a href="#work" class="btn btn-primary">مشاهدة أعمالي</a>
-                <a href="#contact" class="btn btn-secondary">اتصل بي</a>
+                <a href="#about" class="btn btn-primary">تعرف عليّ أكثر</a>
+                <a href="#work" class="btn btn-secondary">مشاهدة أعمالي</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2 class="section-title">نبذة عن مجتبى</h2>
+            <div class="about-content">
+                
+                <div class="about-photo-container">
+                    <img src="Snapchat-342739935.jpg" alt="مجتبى الكعبي" class="about-photo">
+                </div>
+                
+                <div class="about-text">
+                    <p>
+                        مبرمج عراقي طموح، بدأت رحلتي في عالم البرمجة بشغف كبير لتحويل الأفكار إلى واقع رقمي ملموس. أتخصص في تطوير تطبيقات الموبايل (iOS و Android) وحلول الأعمال المتكاملة، مع تركيز خاص على تقديم تجربة مستخدم سلسة وعصرية. أسعى دائماً لدمج أحدث التقنيات وأتمتة العمليات لضمان كفاءة واحترافية لا مثيل لها.
+                    </p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">+5</div>
+                            <div class="stat-label">سنوات خبرة</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">+100</div>
+                            <div class="stat-label">مشروع مكتمل</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">+120</div>
+                            <div class="stat-label">عميل سعيد</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="work">
             <h2 class="section-title">أبرز أعمالي</h2>
-            <p style="color: #a0aec0; margin-top: -30px; margin-bottom: 30px; font-size: 14px;">(اسحب الصور يميناً ويساراً للمشاهدة)</p>
             
             <div class="projects-grid">
                 
                 <div class="project-card">
                     <h3>تطبيق مكتبة الأمل</h3>
                     <p>تطبيق مخصص لإدارة مكتبة الأمل للقرطاسية والاستنساخ وتسهيل خدماتها للزبائن.</p>
-                    <div class="app-gallery">
+                    <div class="toggle-btn" onclick="toggleGallery('gallery-alamal', this)">مشاهدة الصور ↓</div>
+                    <div class="app-gallery" id="gallery-alamal">
                         <img src="Screenshot_20260323_194551.jpg" alt="صورة 1 مكتبة الأمل">
                         <img src="Screenshot_20260323_194644.jpg" alt="صورة 2 مكتبة الأمل">
                         <img src="Screenshot_20260323_194612.jpg" alt="صورة 3 مكتبة الأمل">
@@ -125,7 +200,8 @@
                 <div class="project-card">
                     <h3>تطبيق غازي</h3>
                     <p>تطبيق متكامل لتسهيل عملية طلب أسطوانات الغاز وتوصيلها للمستخدمين.</p>
-                    <div class="app-gallery">
+                    <div class="toggle-btn" onclick="toggleGallery('gallery-ghazi', this)">مشاهدة الصور ↓</div>
+                    <div class="app-gallery" id="gallery-ghazi">
                         <img src="IMG_20260325_040723_531.jpg" alt="صورة 1 تطبيق غازي">
                     </div>
                 </div>
@@ -133,7 +209,8 @@
                 <div class="project-card">
                     <h3>تطبيق خزاناتي</h3>
                     <p>تطبيق متكامل لخدمة توصيل خزانات المياه بسهولة وسرعة ومتابعة الطلبات.</p>
-                    <div class="app-gallery">
+                    <div class="toggle-btn" onclick="toggleGallery('gallery-khazanaty', this)">مشاهدة الصور ↓</div>
+                    <div class="app-gallery" id="gallery-khazanaty">
                         <img src="Screenshot_20260319_200413.jpg" alt="صورة 1 تطبيق خزاناتي">
                         <img src="IMG_20260319_120827.png" alt="صورة 2 تطبيق خزاناتي">
                     </div>
@@ -142,7 +219,8 @@
                 <div class="project-card">
                     <h3>تطبيق دلال</h3>
                     <p>تطبيق خدمي متكامل مصمم لتوفير تجربة مستخدم سلسة وتلبية الاحتياجات بكفاءة.</p>
-                    <div class="app-gallery">
+                    <div class="toggle-btn" onclick="toggleGallery('gallery-dalal', this)">مشاهدة الصور ↓</div>
+                    <div class="app-gallery" id="gallery-dalal">
                         <img src="Screenshot_20260324_213603.jpg" alt="صورة 1 تطبيق دلال">
                     </div>
                 </div>
@@ -167,6 +245,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 
     <script>
+        // دالة إظهار وإخفاء الصور
+        function toggleGallery(galleryId, btnElement) {
+            const gallery = document.getElementById(galleryId);
+            if (gallery.style.display === 'flex') {
+                gallery.style.display = 'none';
+                btnElement.innerHTML = 'مشاهدة الصور ↓';
+            } else {
+                gallery.style.display = 'flex';
+                btnElement.innerHTML = 'إخفاء الصور ↑';
+            }
+        }
+
+        // تشغيل الخلفية المتحركة
         window.onload = function() {
             if(window.particlesJS) {
                 particlesJS("particles-js", {
@@ -177,6 +268,7 @@
             }
         };
 
+        // تشغيل تأثير الكتابة
         const texts = ["مبرمج تطبيقات موبايل", "مطور برمجيات متكاملة", "متخصص حلول الأعمال"];
         let count = 0; let index = 0; let currentText = ""; let letter = "";
         (function type() {
