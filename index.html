@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقعي الشخصي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* الإعدادات الأساسية */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: #0d1117; /* لون الخلفية الداكن */
+            color: #ffffff;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at 50% 50%, #161b22 0%, #0d1117 100%);
+        }
+
+        /* شريط التنقل (الهيدر) */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: #00b4d8; /* النقطة الزرقاء في الشعار */
+        }
+
+        .menu-icon {
+            font-size: 28px;
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        /* القسم الرئيسي (Hero Section) */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* شارة الحالة */
+        .status-badge {
+            border: 1px solid #00b4d8;
+            color: #00b4d8;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 30px;
+        }
+
+        /* العناوين والنصوص */
+        h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #00b4d8; /* اللون الأزرق السماوي */
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #a0aec0; /* لون النص الرمادي الفاتح */
+            font-size: 18px;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        /* الأزرار */
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border-radius: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00b4d8, #0077b6);
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid #2d3748;
+            background-color: #1a202c;
+        }
+
+        .btn-secondary:hover {
+            background-color: #2d3748;
+            transform: translateY(-2px);
+        }
+
+        /* متجاوب مع الهواتف */
+        @media (max-width: 600px) {
+            h1 { font-size: 38px; }
+            h2 { font-size: 22px; }
+            p { font-size: 16px; }
+            .buttons { flex-direction: row; }
+            .btn { font-size: 16px; padding: 12px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="menu-icon">☰</div>
+        <div class="logo"><span>.</span>اسمك هنا</div>
+    </header>
+
+    <section class="hero">
+        <div class="status-badge">متاح للعمل الحر والمشاريع الكبيرة</div>
+        
+        <h1>أنا [المبرمج مجتبى الكعبي ]</h1>
+        <h2>مبرمج ومصمم وسائط متعددة</h2>
+        
+        <p>
+            أجمع بين دقة الأكواد البرمجية واللمسة الإبداعية في التصميم المرئي، مع تركيز خاص على أتمتة العمليات ودمج تقنيات الذكاء الاصطناعي.
+        </p>
+        
+        <div class="buttons">
+            <a href="#work" class="btn btn-primary">مشاهدة أعمالي</a>
+            <a href="#contact" class="btn btn-secondary">تواصل معي</a>
+        </div>
+    </section>
+
+</body>
+</html>
