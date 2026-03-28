@@ -52,7 +52,7 @@
         /* --- قسم نبذة عني المطور --- */
         .about-content { display: flex; gap: 40px; align-items: center; max-width: 1000px; width: 100%; text-align: right; justify-content: center; margin-bottom: 40px; }
         
-        /* حاوية الصورة الدائرية المضبوطة */
+        /* حاوية الصورة الدائرية */
         .about-photo-container { 
             position: relative; 
             width: 250px; 
@@ -81,7 +81,7 @@
             border: 3px solid #30363d; 
             animation: float 3s ease-in-out infinite; 
             object-fit: cover; /* يملأ الدائرة بدون تشويه */
-            object-position: top center; /* يركز على أعلى الصورة (الوجه) حتى ما ينكص */
+            object-position: center 30%; /* تم التعديل هنا: يرفع الصورة لإظهار الأكتاف والجسم */
             background-color: #161b22;
         }
         
