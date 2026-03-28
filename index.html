@@ -20,7 +20,7 @@
         .main-content { position: relative; z-index: 2; pointer-events: none; }
         .main-content * { pointer-events: auto; }
 
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; position: fixed; width: 100%; top: 0; background: rgba(13, 17, 23, 0.85); backdrop-filter: blur(5px); z-index: 1000; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; position: fixed; width: 100%; top: 0; background: rgba(13, 17, 23, 0.85); backdrop-filter: blur(5px); z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .logo { font-size: 24px; font-weight: 800; color: #ffffff; }
         .logo span { color: #00b4d8; }
 
@@ -41,54 +41,51 @@
         .btn-secondary { background-color: #1a202c; color: #ffffff; border: 1px solid #2d3748; }
         .btn-primary:hover, .btn-secondary:hover { transform: translateY(-3px); }
 
-        .projects-grid { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; max-width: 1000px; padding: 0 10px; }
-        .project-card { background: rgba(22, 27, 34, 0.85); border: 1px solid #30363d; padding: 25px; border-radius: 15px; width: calc(50% - 20px); text-align: right; transition: all 0.3s ease; cursor: pointer; position: relative; overflow: hidden; }
-        .project-card:hover { border-color: #00b4d8; transform: translateY(-5px); background-color: rgba(22, 27, 34, 0.95); }
-        .project-card h3 { color: #00b4d8; margin-bottom: 10px; font-size: 20px; }
-        .project-card p { color: #a0aec0; font-size: 15px; line-height: 1.5; margin-bottom: 10px;}
-        .project-card .view-more { color: #00b4d8; font-size: 13px; font-weight: 500; display: block; text-align: left; }
+        .projects-grid { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; max-width: 1100px; padding: 0 10px; width: 100%; }
+        .project-card { background: rgba(22, 27, 34, 0.85); border: 1px solid #30363d; padding: 25px; border-radius: 15px; width: calc(50% - 20px); text-align: right; transition: border-color 0.3s ease; }
+        .project-card:hover { border-color: #00b4d8; }
+        .project-card h3 { color: #00b4d8; margin-bottom: 10px; font-size: 22px; }
+        .project-card p { color: #a0aec0; font-size: 15px; line-height: 1.6; margin-bottom: 20px; min-height: 45px;}
+        
+        /* تصميم معرض الصور الأفقي (مثل متجر التطبيقات) */
+        .app-gallery {
+            display: flex;
+            overflow-x: auto;
+            gap: 12px;
+            padding-bottom: 10px;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -ms-overflow-style: none; /* إخفاء شريط التمرير في انترنت اكسبلورر */
+            scrollbar-width: none; /* إخفاء شريط التمرير في فايرفوكس */
+        }
+        
+        /* إخفاء شريط التمرير في كروم وسفاري مع الحفاظ على السحب */
+        .app-gallery::-webkit-scrollbar {
+            display: none;
+        }
+
+        .app-gallery img {
+            height: 250px; /* طول الصورة (مناسب للقطات شاشة الموبايل) */
+            border-radius: 10px;
+            border: 1px solid #2d3748;
+            flex-shrink: 0; /* منع انكماش الصور */
+            scroll-snap-align: start;
+            object-fit: contain;
+            background-color: #0d1117;
+        }
 
         .contact-info { background: rgba(22, 27, 34, 0.85); padding: 40px 30px; border-radius: 15px; border: 1px solid #30363d; max-width: 500px; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px; }
         .contact-info p { color: #a0aec0; font-size: 16px; margin-bottom: 10px; }
         .contact-phone { display: flex; align-items: center; justify-content: right; gap: 10px; margin-bottom: 5px; color: #ffffff; font-weight: 700; font-size: 24px; direction: ltr; letter-spacing: 1px;}
         .contact-detail { color: #a0aec0; font-size: 14px; display: flex; gap: 8px; align-items: center; margin-bottom: 15px; }
 
-        @media (max-width: 900px) { .project-card { width: calc(50% - 10px); } }
-        @media (max-width: 600px) { h1 { font-size: 34px; } h2.typing-container { font-size: 20px; } .project-card { width: 100%; } .contact-phone { font-size: 20px; } }
-
-        /* إعدادات نافذة الصور */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); backdrop-filter: blur(5px); overflow: auto; align-items: center; justify-content: center; pointer-events: auto; }
-        .modal-content-wrapper { position: relative; max-width: 90%; max-height: 80%; display: flex; flex-direction: column; align-items: center; }
-        .modal-img { max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 10px; border: 2px solid #30363d; box-shadow: 0 5px 25px rgba(0,0,0,0.5); animation: zoomIn 0.3s; }
-        @keyframes zoomIn { from {transform:scale(0)} to {transform:scale(1)} }
-        
-        .close-modal { position: absolute; top: -40px; right: 0; color: #fff; font-size: 35px; font-weight: bold; cursor: pointer; transition: 0.2s; }
-        .close-modal:hover { color: #ff5f5f; }
-
-        .modal-nav { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); pointer-events: none; }
-        .modal-nav-btn { color: white; background-color: rgba(0, 180, 216, 0.3); font-size: 24px; padding: 10px 15px; border-radius: 50%; cursor: pointer; pointer-events: auto; transition: 0.2s; border: 1px solid transparent; user-select: none; }
-        .modal-nav-btn:hover { background-color: rgba(0, 180, 216, 0.8); border-color: #00b4d8; }
-
-        .image-counter { color: #a0aec0; margin-top: 15px; font-size: 14px; font-weight: 500; }
+        @media (max-width: 900px) { .project-card { width: 100%; } }
+        @media (max-width: 600px) { h1 { font-size: 34px; } h2.typing-container { font-size: 20px; } .app-gallery img { height: 220px; } .contact-phone { font-size: 20px; } }
     </style>
 </head>
 <body>
 
     <div id="particles-js"></div>
-
-    <div id="galleryModal" class="modal" onclick="closeModalOnBGClick(event)">
-        <div class="modal-content-wrapper">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <img class="modal-img" id="modalImage" src="" alt="صورة المشروع">
-            
-            <div class="modal-nav">
-                <span class="modal-nav-btn" onclick="changeSlide(-1)">&#10094;</span>
-                <span class="modal-nav-btn" onclick="changeSlide(1)">&#10095;</span>
-            </div>
-            
-            <div class="image-counter" id="imageCounter"></div>
-        </div>
-    </div>
 
     <div class="main-content">
         <header>
@@ -108,33 +105,45 @@
 
         <section id="work">
             <h2 class="section-title">أبرز أعمالي</h2>
-            <p style="color: #a0aec0; margin-top: -30px; margin-bottom: 30px; font-size: 14px;">(اضغط على المشروع لمشاهدة الصور)</p>
+            <p style="color: #a0aec0; margin-top: -30px; margin-bottom: 30px; font-size: 14px;">(اسحب الصور يميناً ويساراً للمشاهدة)</p>
             
             <div class="projects-grid">
                 
-                <div class="project-card" onclick="openGallery('alamal')">
+                <div class="project-card">
                     <h3>تطبيق مكتبة الأمل</h3>
                     <p>تطبيق مخصص لإدارة مكتبة الأمل للقرطاسية والاستنساخ وتسهيل خدماتها للزبائن.</p>
-                    <span class="view-more">مشاهدة الصور ←</span>
+                    <div class="app-gallery">
+                        <img src="Screenshot_20260323_194551.jpg" alt="صورة 1 مكتبة الأمل">
+                        <img src="Screenshot_20260323_194644.jpg" alt="صورة 2 مكتبة الأمل">
+                        <img src="Screenshot_20260323_194612.jpg" alt="صورة 3 مكتبة الأمل">
+                    </div>
                 </div>
 
-                <div class="project-card" onclick="openGallery('ghazi')">
+                <div class="project-card">
                     <h3>تطبيق غازي</h3>
                     <p>تطبيق متكامل لتسهيل عملية طلب أسطوانات الغاز وتوصيلها للمستخدمين.</p>
-                    <span class="view-more">مشاهدة الصور ←</span>
+                    <div class="app-gallery">
+                        <img src="IMG_20260325_040723_531.jpg" alt="صورة 1 تطبيق غازي">
+                    </div>
                 </div>
                 
-                <div class="project-card" onclick="openGallery('khazanaty')">
+                <div class="project-card">
                     <h3>تطبيق خزاناتي</h3>
                     <p>تطبيق متكامل لخدمة توصيل خزانات المياه بسهولة وسرعة ومتابعة الطلبات.</p>
-                    <span class="view-more">مشاهدة الصور ←</span>
+                    <div class="app-gallery">
+                        <img src="Screenshot_20260319_200413.jpg" alt="صورة 1 تطبيق خزاناتي">
+                        <img src="IMG_20260319_120827.png" alt="صورة 2 تطبيق خزاناتي">
+                    </div>
                 </div>
                 
-                <div class="project-card" onclick="openGallery('dalal')">
+                <div class="project-card">
                     <h3>تطبيق دلال</h3>
                     <p>تطبيق خدمي متكامل مصمم لتوفير تجربة مستخدم سلسة وتلبية الاحتياجات بكفاءة.</p>
-                    <span class="view-more">مشاهدة الصور ←</span>
+                    <div class="app-gallery">
+                        <img src="Screenshot_20260324_213603.jpg" alt="صورة 1 تطبيق دلال">
+                    </div>
                 </div>
+
             </div>
         </section>
 
@@ -174,63 +183,6 @@
             document.getElementById("typing-text").textContent = letter;
             if (letter.length === currentText.length) { setTimeout(() => { index = 0; count++; type(); }, 2500); } else { setTimeout(type, 100); }
         }());
-
-        // --- ربط الصور الحقيقية التي قمت برفعها ---
-        const projectImagesData = {
-            alamal: [
-                "Screenshot_20260323_194551.jpg",
-                "Screenshot_20260323_194644.jpg",
-                "Screenshot_20260323_194612.jpg"
-            ],
-            ghazi: [
-                "IMG_20260325_040723_531.jpg"
-            ],
-            khazanaty: [
-                "Screenshot_20260319_200413.jpg",
-                "IMG_20260319_120827.png"
-            ],
-            dalal: [
-                "Screenshot_20260324_213603.jpg"
-            ]
-        };
-
-        let currentProjectImages = [];
-        let currentImageIndex = 0;
-
-        function openGallery(projectId) {
-            currentProjectImages = projectImagesData[projectId]; 
-            if (currentProjectImages && currentProjectImages.length > 0) {
-                currentImageIndex = 0; 
-                updateModalImage();
-                document.getElementById('galleryModal').style.display = 'flex';
-                document.body.style.overflow = 'hidden'; 
-            } else {
-                alert("لم يتم إضافة صور لهذا المشروع بعد.");
-            }
-        }
-
-        function updateModalImage() {
-            const imgElement = document.getElementById('modalImage');
-            const counterElement = document.getElementById('imageCounter');
-            imgElement.src = currentProjectImages[currentImageIndex];
-            counterElement.textContent = `صورة ${currentImageIndex + 1} من ${currentProjectImages.length}`;
-        }
-
-        function changeSlide(direction) {
-            currentImageIndex += direction;
-            if (currentImageIndex >= currentProjectImages.length) { currentImageIndex = 0; }
-            if (currentImageIndex < 0) { currentImageIndex = currentProjectImages.length - 1; }
-            updateModalImage();
-        }
-
-        function closeModal() {
-            document.getElementById('galleryModal').style.display = 'none';
-            document.body.style.overflow = 'auto'; 
-        }
-
-        function closeModalOnBGClick(event) {
-            if (event.target.id === 'galleryModal') { closeModal(); }
-        }
     </script>
 </body>
 </html>
