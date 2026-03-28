@@ -33,6 +33,7 @@
         .section-title { font-size: 36px; margin-bottom: 40px; color: #ffffff; text-align: center; width: 100%; }
         
         /* القسم الرئيسي - Hero */
+        .hero { padding-top: 150px; }
         .status-badge { border: 1px solid #00b4d8; color: #00b4d8; padding: 8px 20px; border-radius: 50px; font-size: 14px; font-weight: 500; margin-bottom: 30px; background: rgba(0, 180, 216, 0.1); }
         h1 { font-size: 48px; font-weight: 800; margin-bottom: 10px; }
         
@@ -51,17 +52,49 @@
         /* --- قسم نبذة عني المطور --- */
         .about-content { display: flex; gap: 40px; align-items: center; max-width: 1000px; width: 100%; text-align: right; justify-content: center; margin-bottom: 40px; }
         
-        /* حاوية الصورة المتحركة */
-        .about-photo-container { position: relative; width: 250px; height: 250px; flex-shrink: 0; }
-        .about-photo-container::after { content: ''; position: absolute; top: 10px; right: 10px; width: 100%; height: 100%; border: 2px solid #00b4d8; border-radius: 20px; z-index: -1; }
+        /* حاوية الصورة المتحركة (تم تحديث الأبعاد والخصائص لإظهار الوجه كاملاً) */
+        .about-photo-container { 
+            position: relative; 
+            /* ألغينا العرض والارتفاع الثابت ليكون أكثر مرونة */
+            width: 100%;
+            max-width: 250px; /* أقصى عرض مسموح به */
+            flex-shrink: 0; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
         
-        .about-photo { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; border: 2px solid #30363d; animation: float 3s ease-in-out infinite; /* تأثير الحركة العائمة */ }
+        /* الإطار الخلفي المنقط المعدل ليتناسب مع حجم الصورة المتغير */
+        .about-photo-container::after { 
+            content: ''; 
+            position: absolute; 
+            top: 10px; 
+            right: 10px; 
+            bottom: -10px;
+            left: -10px;
+            border: 2px dashed #00b4d8; /* جعلناه منقط dashed لمظهر أجمل */
+            border-radius: 20px; 
+            z-index: -1; 
+        }
+        
+        .about-photo { 
+            width: 100%; /* تأخذ كامل عرض الحاوية */
+            height: auto; /* الارتفاع يتحدد تلقائياً لإظهار الصورة كاملة بدون قص */
+            display: block; /* إلغاء أي مسافات بيضاء افتراضية */
+            border-radius: 20px; 
+            border: 2px solid #30363d; 
+            /* تأثير الحركة العائمة للأعلى والأسفل لجعل الصورة حيوية */
+            animation: float 3s ease-in-out infinite; 
+            /* object-fit: cover; // تم إلغاء هذه الخاصية القديمة لضمان عدم القص */
+            object-fit: contain; /* هذا يضمن ظهورها كاملة داخل حدودها إذا لزم الأمر */
+        }
         
         /* تعريف الأنميشن للصورة */
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
 
         .about-text { flex-grow: 1; }
-        .about-text p { color: #a0aec0; font-size: 17px; margin-bottom: 30px; line-height: 1.8; }
+        .about-text p { color: #a0aec0; font-size: 17px; margin-bottom: 30px; line-height: 1.8; text-align: right; }
 
         /* حاوية المربعات الصغيرة (الإحصائيات) */
         .stats-grid { display: flex; gap: 20px; flex-wrap: wrap; justify-content: right; width: 100%; }
@@ -94,8 +127,8 @@
         .contact-detail { color: #a0aec0; font-size: 14px; display: flex; gap: 8px; align-items: center; margin-bottom: 15px; }
 
         /* للتوافق مع الهواتف */
-        @media (max-width: 900px) { .project-card { width: 100%; } .about-content { flex-direction: column; text-align: center; } .stats-grid { justify-content: center; } .stat-card { width: calc(50% - 10px); } }
-        @media (max-width: 600px) { h1 { font-size: 34px; } h2.typing-container { font-size: 20px; } .app-gallery img { height: 220px; } .contact-phone { font-size: 20px; } .about-photo-container { width: 200px; height: 200px; } .stat-card { width: 100%; } }
+        @media (max-width: 900px) { .project-card { width: 100%; } .about-content { flex-direction: column; text-align: center; gap: 20px; } .about-photo-container { max-width: 200px; margin-bottom: 30px; } .stats-grid { justify-content: center; } .stat-card { width: calc(50% - 10px); } }
+        @media (max-width: 600px) { h1 { font-size: 34px; } h2.typing-container { font-size: 20px; } .app-gallery img { height: 220px; } .contact-phone { font-size: 20px; } .stat-card { width: 100%; } }
     </style>
 </head>
 <body>
@@ -107,7 +140,7 @@
             <div class="logo"><span>.</span>مجتبى</div>
         </header>
 
-        <section id="home">
+        <section id="home" class="hero">
             <div class="status-badge">متاح للعمل الحر والمشاريع البرمجية</div>
             <h1>أنا مجتبى الكعبي</h1>
             <h2 class="typing-container"><span id="typing-text"></span><span class="cursor">&nbsp;</span></h2>
@@ -213,7 +246,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 
     <script>
-        // دالة إظهار وإخفاء الصور
+        // دالة إظهار وإخفاء الصور في قسم الأعمال
         function toggleGallery(galleryId, btnElement) {
             const gallery = document.getElementById(galleryId);
             if (gallery.style.display === 'flex') {
@@ -225,7 +258,7 @@
             }
         }
 
-        // تشغيل الخلفية المتحركة
+        // تشغيل الخلفية المتحركة (النقاط المتصلة)
         window.onload = function() {
             if(window.particlesJS) {
                 particlesJS("particles-js", {
@@ -236,7 +269,7 @@
             }
         };
 
-        // تشغيل تأثير الكتابة
+        // تشغيل تأثير الكتابة للعناوين المهنية
         const texts = ["مبرمج تطبيقات موبايل", "مطور برمجيات متكاملة", "متخصص حلول الأعمال"];
         let count = 0; let index = 0; let currentText = ""; let letter = "";
         (function type() {
@@ -249,4 +282,3 @@
     </script>
 </body>
 </html>
- 
